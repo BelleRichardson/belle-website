@@ -41,9 +41,30 @@
 
   /* slow parallax on portraits and the hero */
   var parallaxLayers = [].slice.call(document.querySelectorAll('[data-parallax]'));
+  var sapphire = document.querySelector('.bloom-sapphire');
+  var orchid = document.querySelector('.bloom-orchid');
   var ticking = false;
 
+  /* The blue sinks and the orchid rises as the page runs, so the
+     atmosphere shifts from cool at the top to warm-violet at the base. */
+  function driftBlooms() {
+    var scrollable = document.documentElement.scrollHeight - window.innerHeight;
+    var progress = scrollable > 0 ? window.scrollY / scrollable : 0;
+
+    if (sapphire) {
+      sapphire.style.transform =
+        'translate3d(' + (progress * 12).toFixed(2) + 'vw,' +
+        (progress * 24).toFixed(2) + 'vh,0)';
+    }
+    if (orchid) {
+      orchid.style.transform =
+        'translate3d(' + (progress * -14).toFixed(2) + 'vw,' +
+        (progress * -34).toFixed(2) + 'vh,0)';
+    }
+  }
+
   function drift() {
+    driftBlooms();
     var viewport = window.innerHeight;
 
     parallaxLayers.forEach(function (layer) {
