@@ -253,8 +253,8 @@ p { margin: 0 0 1.5rem; max-width: 62ch; color: var(--silver-dim); }
 .hero-media img {
   width: 100%; height: 100%;
   object-fit: cover;
-  object-position: 50% 32%;
-  filter: saturate(0.85) contrast(1.04) brightness(0.92);
+  object-position: 56% 44%;
+  filter: saturate(0.95) contrast(1.02) brightness(1.04);
 }
 
 /* Reads down to midnight at the feet so the type has ground to sit on,
@@ -263,8 +263,8 @@ p { margin: 0 0 1.5rem; max-width: 62ch; color: var(--silver-dim); }
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(to top, rgba(7,10,17,0.94) 0%, rgba(7,10,17,0.42) 46%, rgba(7,10,17,0.14) 100%),
-    linear-gradient(to right, rgba(7,10,17,0.72) 0%, rgba(7,10,17,0.06) 68%),
+    linear-gradient(to top, rgba(7,10,17,0.92) 0%, rgba(7,10,17,0.30) 50%, rgba(7,10,17,0.08) 100%),
+    linear-gradient(to right, rgba(7,10,17,0.78) 0%, rgba(7,10,17,0.04) 56%),
     radial-gradient(70% 60% at 18% 8%, rgba(46,92,158,0.34) 0%, rgba(46,92,158,0) 72%);
 }
 
@@ -276,7 +276,9 @@ p { margin: 0 0 1.5rem; max-width: 62ch; color: var(--silver-dim); }
   text-transform: uppercase;
   letter-spacing: 0.14em;
   line-height: 0.98;
-  font-size: clamp(2.75rem, 9.5vw, 7rem);
+  /* Held to a left column so the wordmark clears Belle, who sits at
+     ~57% across the stage frame and is never cropped out of it. */
+  font-size: clamp(2.5rem, 6vw, 4.25rem);
   margin: 0 0 1.5rem;
   color: var(--silver);
 }
