@@ -1,0 +1,5 @@
+# TEMPORARY — the site is still being built.
+# BEFORE LAUNCH: delete the Disallow line below and remove the
+# <meta name="robots" content="noindex, nofollow"> tag from index.html.
+User-agent: *
+Disallow: /

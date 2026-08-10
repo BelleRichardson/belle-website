@@ -337,6 +337,78 @@ p { margin: 0 0 1.5rem; max-width: 62ch; color: var(--silver-dim); }
   color: var(--midnight);
 }
 
+.btn-quiet {
+  border-color: var(--rule);
+  padding: 0.85rem 1.75rem;
+}
+
+.btn-quiet:hover {
+  background: transparent;
+  border-color: var(--sapphire);
+  color: var(--silver);
+}
+
+/* ---------- upcoming gigs ---------- */
+
+.gigs { margin-bottom: clamp(3rem, 7vh, 5rem); }
+
+.gig-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid var(--rule);
+}
+
+.gig-list li {
+  display: grid;
+  grid-template-columns: 4.5rem minmax(0, 1fr);
+  grid-template-areas:
+    "date what"
+    "date where";
+  column-gap: 1.75rem;
+  align-items: baseline;
+  padding: 1.35rem 0;
+  border-bottom: 1px solid var(--rule);
+}
+
+.gig-date {
+  grid-area: date;
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  line-height: 1;
+}
+
+.gig-day {
+  font-family: var(--display);
+  font-size: 1.9rem;
+  color: var(--silver);
+}
+
+.gig-mon {
+  font-size: 0.625rem;
+  text-transform: uppercase;
+  letter-spacing: 0.28em;
+  color: var(--silver-faint);
+  margin-top: 0.4rem;
+}
+
+.gig-what {
+  grid-area: what;
+  font-family: var(--display);
+  font-size: 1.35rem;
+  color: var(--silver);
+}
+
+.gig-where {
+  grid-area: where;
+  font-style: normal;
+  font-size: 0.8125rem;
+  color: var(--silver-dim);
+  margin-top: 0.3rem;
+}
+
 /* ---------- sections ---------- */
 
 .section { padding: clamp(6rem, 15vh, 11rem) 0; }
@@ -373,6 +445,10 @@ p { margin: 0 0 1.5rem; max-width: 62ch; color: var(--silver-dim); }
   filter: saturate(0.72) contrast(1.05);
   will-change: transform;
 }
+
+/* The press portrait keeps the photographer's colour — the blue of the
+   corset is the point of the shot, and the site grading was killing it. */
+.about-portrait .frame img { filter: none; }
 
 .frame-tall { aspect-ratio: 4 / 5; }
 .frame-square { aspect-ratio: 1 / 1; }
