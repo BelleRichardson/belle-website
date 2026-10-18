@@ -5,6 +5,7 @@
   --slate: #1B2436;
   --silver: #C9CFD6;
   --sapphire: #2E5C9E;
+  --sapphire-lit: #4A86C9;
   --orchid: #7A569E;
 
   --silver-dim: rgba(201, 207, 214, 0.72);
@@ -132,7 +133,11 @@ main,
   color: var(--silver);
 }
 
-.display em { font-style: italic; color: var(--sapphire); }
+.display em { font-style: italic; color: var(--sapphire-lit); }
+
+/* The accent reads better carrying a whole line than picking out one
+   word mid-sentence. */
+.display-accent { color: var(--sapphire-lit); }
 
 .caption {
   font-size: 0.75rem;
@@ -694,13 +699,19 @@ p { margin: 0 0 1.5rem; max-width: 62ch; color: var(--silver-dim); }
 }
 
 
-.frame-portrait { aspect-ratio: 4 / 5; }
-.frame-wide { aspect-ratio: 3 / 2; }
+/* Row height drives the gallery, so the frames fill it rather than
+   setting their own ratio. The base .frame carries aspect-ratio 2/3,
+   which would otherwise pin a full-height cell to a 193px width. */
+.gallery .frame {
+  height: 100%;
+  width: 100%;
+  aspect-ratio: auto;
+}
 
 /* A landscape stage shot squeezed into a portrait cell loses the band and
    the crowd, which is the whole picture. Wide shots take the full row
    instead, so every cell in a row still matches its neighbour. */
-.gallery figure.is-wide { grid-column: 1 / -1; }
+.gallery figure.is-wide { grid-column: span 2; }
 
 .section-slate .frame { background: var(--midnight); }
 
@@ -754,12 +765,12 @@ p { margin: 0 0 1.5rem; max-width: 62ch; color: var(--silver-dim); }
 
 .gallery {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: clamp(1rem, 2.5vw, 1.75rem);
-  align-items: start;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-auto-rows: clamp(190px, 21vw, 290px);
+  gap: clamp(0.6rem, 1.4vw, 1.1rem);
 }
 
-.gallery figure { margin: 0; }
+.gallery figure { margin: 0; height: 100%; }
 
 /* ---------- sessions ---------- */
 
@@ -857,7 +868,8 @@ p { margin: 0 0 1.5rem; max-width: 62ch; color: var(--silver-dim); }
 
   .about-grid,
   .sessions-grid,
-  .gallery { grid-template-columns: 1fr; }
+  .gallery { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .gallery figure.is-wide { grid-column: span 2; }
 
   .about-portrait { order: -1; }
 
@@ -878,6 +890,9 @@ p { margin: 0 0 1.5rem; max-width: 62ch; color: var(--silver-dim); }
 }
 
 @media (max-width: 520px) {
+  .gallery { grid-template-columns: 1fr; }
+  .gallery figure.is-wide { grid-column: span 1; }
+
   .hero-name {
     font-size: 2.25rem;
     letter-spacing: 0.1em;
