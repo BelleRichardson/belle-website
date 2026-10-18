@@ -39,6 +39,28 @@
     revealables.forEach(function (el) { revealer.observe(el); });
   }
 
+  /* Gigs retire themselves the day after they happen, and the whole
+     Upcoming block goes with the last one, so a date that has been and
+     gone is never left on the page labelled upcoming. */
+  var gigBlock = document.querySelector('.gigs');
+  if (gigBlock) {
+    var today = new Date();
+    today.setHours(0, 0, 0, 0);
+    var upcoming = 0;
+
+    [].forEach.call(gigBlock.querySelectorAll('.gig-list li'), function (gig) {
+      var stamp = gig.querySelector('time[datetime]');
+      var when = stamp && new Date(stamp.getAttribute('datetime') + 'T00:00:00');
+      if (!when || isNaN(when.getTime()) || when < today) {
+        gig.hidden = true;
+      } else {
+        upcoming++;
+      }
+    });
+
+    if (!upcoming) { gigBlock.hidden = true; }
+  }
+
   /* slow parallax on portraits and the hero */
   var parallaxLayers = [].slice.call(document.querySelectorAll('[data-parallax]'));
   var sapphire = document.querySelector('.bloom-sapphire');

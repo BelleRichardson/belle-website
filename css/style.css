@@ -350,6 +350,10 @@ p { margin: 0 0 1.5rem; max-width: 62ch; color: var(--silver-dim); }
 
 /* ---------- upcoming gigs ---------- */
 
+/* The gig rows are display:grid, which would otherwise win over the
+   hidden attribute that retires a past date. */
+[hidden] { display: none !important; }
+
 .gigs { margin-bottom: clamp(3rem, 7vh, 5rem); }
 
 .gig-list {
