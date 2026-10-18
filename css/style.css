@@ -254,7 +254,7 @@ p { margin: 0 0 1.5rem; max-width: 62ch; color: var(--silver-dim); }
   width: 100%; height: 100%;
   object-fit: cover;
   object-position: 56% 44%;
-  filter: saturate(0.95) contrast(1.02) brightness(1.04);
+  filter: brightness(1.04);
 }
 
 /* Reads down to midnight at the feet so the type has ground to sit on,
@@ -445,15 +445,11 @@ p { margin: 0 0 1.5rem; max-width: 62ch; color: var(--silver-dim); }
 .video-card img {
   width: 100%; height: 100%;
   object-fit: cover;
-  filter: saturate(0.88) brightness(0.82);
   transition: filter 600ms var(--ease), transform 900ms var(--ease);
 }
 
 .video-card:hover img,
-.video-card:focus-visible img {
-  filter: saturate(1) brightness(1);
-  transform: scale(1.03);
-}
+.video-card:focus-visible img { transform: scale(1.03); }
 
 .video-card:hover,
 .video-card:focus-visible { border-color: var(--sapphire); }
@@ -544,15 +540,11 @@ p { margin: 0 0 1.5rem; max-width: 62ch; color: var(--silver-dim); }
 .still-img img {
   width: 100%; height: 100%;
   object-fit: cover;
-  filter: saturate(0.88) brightness(0.88);
   transition: filter 600ms var(--ease), transform 900ms var(--ease);
 }
 
 .still:hover .still-img img,
-.still:focus-visible .still-img img {
-  filter: saturate(1) brightness(1);
-  transform: scale(1.04);
-}
+.still:focus-visible .still-img img { transform: scale(1.04); }
 
 .still:hover .still-img,
 .still:focus-visible .still-img { border-color: var(--sapphire); }
@@ -703,15 +695,17 @@ p { margin: 0 0 1.5rem; max-width: 62ch; color: var(--silver-dim); }
 .frame img {
   width: 100%; height: 100%;
   object-fit: cover;
-  filter: saturate(0.72) contrast(1.05);
   will-change: transform;
 }
 
-/* The press portrait keeps the photographer's colour — the blue of the
-   corset is the point of the shot, and the site grading was killing it. */
-.about-portrait .frame img { filter: none; }
 
 .frame-portrait { aspect-ratio: 4 / 5; }
+.frame-wide { aspect-ratio: 3 / 2; }
+
+/* A landscape stage shot squeezed into a portrait cell loses the band and
+   the crowd, which is the whole picture. Wide shots take the full row
+   instead, so every cell in a row still matches its neighbour. */
+.gallery figure.is-wide { grid-column: 1 / -1; }
 
 .section-slate .frame { background: var(--midnight); }
 
@@ -765,7 +759,7 @@ p { margin: 0 0 1.5rem; max-width: 62ch; color: var(--silver-dim); }
 
 .gallery {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: clamp(1rem, 2.5vw, 1.75rem);
   align-items: start;
 }
