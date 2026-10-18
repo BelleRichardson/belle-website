@@ -124,6 +124,48 @@
     });
   }
 
+  /* The scroll hint is a lie on a wide screen where the whole rail is
+     already visible, so it only appears when there is genuinely more
+     sitting off the edge. */
+  var rail = document.querySelector('.rail');
+  var railHint = document.querySelector('.rail-hint');
+
+  function syncRailHint() {
+    if (!rail || !railHint) return;
+    var items = rail.querySelectorAll('li');
+    if (!items.length) { railHint.hidden = true; return; }
+    /* Measure the last card, not the rail's scrollWidth: the rail carries
+       spacer pseudo-elements so it bleeds to the viewport edge, and those
+       alone make it "scrollable" even when every card is already in view.
+       Adding scrollLeft back gives the unscrolled position, so this holds
+       wherever the rail happens to be scrolled to. */
+    var last = items[items.length - 1];
+    var overshoot = last.getBoundingClientRect().right
+                  - rail.getBoundingClientRect().right
+                  + rail.scrollLeft;
+    railHint.hidden = overshoot <= 4;
+  }
+
+  if (rail && railHint) {
+    syncRailHint();
+    window.addEventListener('resize', syncRailHint);
+    window.addEventListener('load', syncRailHint);
+  }
+
+  /* The Soul Spice emblem reveals itself only once the file is really
+     there. It is deliberately not lazy-loaded: the figure starts as
+     display:none, so a lazy image would never enter the viewport, never
+     load, and so never un-hide itself. */
+  var ssLogo = document.getElementById('ssLogo');
+  if (ssLogo) {
+    var ssImg = ssLogo.querySelector('img');
+    if (ssImg.complete && ssImg.naturalWidth > 0) {
+      ssLogo.hidden = false;
+    } else {
+      ssImg.addEventListener('load', function () { ssLogo.hidden = false; });
+    }
+  }
+
   /* slow parallax on portraits and the hero */
   var parallaxLayers = [].slice.call(document.querySelectorAll('[data-parallax]'));
   var sapphire = document.querySelector('.bloom-sapphire');

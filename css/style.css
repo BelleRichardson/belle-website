@@ -523,23 +523,50 @@ p { margin: 0 0 1.5rem; max-width: 62ch; color: var(--silver-dim); }
 .still {
   display: block;
   width: clamp(190px, 24vw, 290px);
+}
+
+.still-img {
+  display: block;
   aspect-ratio: 4 / 5;
   overflow: hidden;
   border: 1px solid var(--rule);
   background: var(--slate);
+  transition: border-color 450ms var(--ease);
 }
 
-.still img {
+.still-img img {
   width: 100%; height: 100%;
   object-fit: cover;
   filter: saturate(0.88) brightness(0.88);
   transition: filter 600ms var(--ease), transform 900ms var(--ease);
 }
 
-.still:hover img,
-.still:focus-visible img {
+.still:hover .still-img img,
+.still:focus-visible .still-img img {
   filter: saturate(1) brightness(1);
   transform: scale(1.04);
+}
+
+.still:hover .still-img,
+.still:focus-visible .still-img { border-color: var(--sapphire); }
+
+.still-cap { display: block; margin-top: 0.85rem; }
+
+.still-song {
+  display: block;
+  font-family: var(--display);
+  font-size: 1.0625rem;
+  line-height: 1.25;
+  color: var(--silver);
+}
+
+.still-artist {
+  display: block;
+  margin-top: 0.35rem;
+  font-size: 0.625rem;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  color: var(--silver-faint);
 }
 
 .rail-hint {
@@ -606,6 +633,20 @@ p { margin: 0 0 1.5rem; max-width: 62ch; color: var(--silver-dim); }
 }
 
 .also-with a:hover { border-bottom-color: var(--sapphire); }
+
+/* ---------- sessions logo ---------- */
+
+.sessions-logo {
+  margin: 0 0 clamp(2rem, 4vh, 3rem);
+  width: clamp(118px, 14vw, 168px);
+}
+
+.sessions-logo img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: contain;
+}
 
 /* ---------- sections ---------- */
 
