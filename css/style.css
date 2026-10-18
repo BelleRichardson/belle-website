@@ -627,6 +627,21 @@ p { margin: 0 0 1.5rem; max-width: 62ch; color: var(--silver-dim); }
 .lightbox-close:hover,
 .lightbox-close:focus-visible { border-color: var(--sapphire); }
 
+/* Links inside body copy read as part of the sentence — a sapphire word
+   mid-paragraph pulls the eye off the line. */
+.about-copy a,
+.watch-intro a {
+  color: var(--silver);
+  border-bottom: 1px solid var(--rule);
+  padding-bottom: 1px;
+  transition: border-color 300ms var(--ease);
+}
+
+.about-copy a:hover,
+.about-copy a:focus-visible,
+.watch-intro a:hover,
+.watch-intro a:focus-visible { border-bottom-color: var(--sapphire); }
+
 .also-with {
   margin-top: 1.5rem;
   font-size: 0.8125rem;
@@ -696,8 +711,7 @@ p { margin: 0 0 1.5rem; max-width: 62ch; color: var(--silver-dim); }
    corset is the point of the shot, and the site grading was killing it. */
 .about-portrait .frame img { filter: none; }
 
-.frame-tall { aspect-ratio: 4 / 5; }
-.frame-square { aspect-ratio: 1 / 1; }
+.frame-portrait { aspect-ratio: 4 / 5; }
 
 .section-slate .frame { background: var(--midnight); }
 
@@ -751,13 +765,12 @@ p { margin: 0 0 1.5rem; max-width: 62ch; color: var(--silver-dim); }
 
 .gallery {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: clamp(1.5rem, 4vw, 3.5rem);
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: clamp(1rem, 2.5vw, 1.75rem);
   align-items: start;
 }
 
 .gallery figure { margin: 0; }
-.gallery figure:last-child { margin-top: clamp(2rem, 8vw, 6rem); }
 
 /* ---------- sessions ---------- */
 
@@ -858,7 +871,6 @@ p { margin: 0 0 1.5rem; max-width: 62ch; color: var(--silver-dim); }
   .gallery { grid-template-columns: 1fr; }
 
   .about-portrait { order: -1; }
-  .gallery figure:last-child { margin-top: 0; }
 
   .live-grid { grid-template-columns: 1fr; gap: 2.5rem; }
 
