@@ -301,14 +301,9 @@ p { margin: 0 0 1.5rem; max-width: 62ch; color: var(--silver-dim); }
 
 .hero-rule .label { margin: 0; }
 
-.hero-line {
-  font-family: var(--display);
-  font-size: clamp(1.125rem, 2.4vw, 1.6rem);
-  line-height: 1.45;
-  color: var(--silver);
-  max-width: 26ch;
-  margin-bottom: 2.75rem;
-}
+/* The rule carried the tagline's bottom margin; with the tagline gone it
+   has to hold that gap itself or the button rides up under the role. */
+.hero-rule { margin-bottom: 2.75rem; }
 
 .scroll-hint {
   position: absolute;
