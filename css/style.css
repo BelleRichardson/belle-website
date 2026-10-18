@@ -492,6 +492,7 @@ p { margin: 0 0 1.5rem; max-width: 62ch; color: var(--silver-dim); }
 .rail-wrap { position: relative; }
 
 .rail {
+  --still-h: clamp(215px, 27vw, 330px);
   list-style: none;
   margin: 0;
   padding: 0 0 1.25rem;
@@ -518,16 +519,22 @@ p { margin: 0 0 1.5rem; max-width: 62ch; color: var(--silver-dim); }
 .rail li {
   flex: 0 0 auto;
   scroll-snap-align: center;
+  max-width: 84vw;
 }
 
-.still {
-  display: block;
-  width: clamp(190px, 24vw, 290px);
-}
+/* Cards share a height and take their width from the frame, so a wide
+   stage shot keeps its band and dancers while a vertical reel keeps its
+   crop. The width sits on the item so a long caption wraps inside the
+   card rather than stretching it. */
+.rail li.is-portrait { width: calc(var(--still-h) * 0.8); }
+.rail li.is-landscape { width: calc(var(--still-h) * 1.7778); }
+
+.still { display: block; }
 
 .still-img {
   display: block;
-  aspect-ratio: 4 / 5;
+  width: 100%;
+  height: var(--still-h);
   overflow: hidden;
   border: 1px solid var(--rule);
   background: var(--slate);
