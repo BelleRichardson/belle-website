@@ -413,6 +413,200 @@ p { margin: 0 0 1.5rem; max-width: 62ch; color: var(--silver-dim); }
   margin-top: 0.3rem;
 }
 
+/* ---------- watch ---------- */
+
+.watch-intro {
+  max-width: 44ch;
+  margin-bottom: clamp(2.5rem, 6vh, 4rem);
+}
+
+.video-grid {
+  list-style: none;
+  margin: 0 0 clamp(3rem, 8vh, 5rem);
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(1rem, 2.5vw, 1.75rem);
+}
+
+.video-card {
+  position: relative;
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  padding: 0;
+  border: 1px solid var(--rule);
+  background: var(--slate);
+  overflow: hidden;
+  cursor: pointer;
+  transition: border-color 450ms var(--ease);
+}
+
+.video-card img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  filter: saturate(0.88) brightness(0.82);
+  transition: filter 600ms var(--ease), transform 900ms var(--ease);
+}
+
+.video-card:hover img,
+.video-card:focus-visible img {
+  filter: saturate(1) brightness(1);
+  transform: scale(1.03);
+}
+
+.video-card:hover,
+.video-card:focus-visible { border-color: var(--sapphire); }
+
+/* Play affordance: a ring with a triangle, drawn rather than an icon font. */
+.play {
+  position: absolute;
+  top: 50%; left: 50%;
+  width: 4.25rem; height: 4.25rem;
+  margin: -2.125rem 0 0 -2.125rem;
+  border: 1px solid rgba(201, 207, 214, 0.75);
+  border-radius: 50%;
+  background: rgba(7, 10, 17, 0.35);
+  backdrop-filter: blur(2px);
+  transition: background-color 450ms var(--ease), border-color 450ms var(--ease);
+}
+
+.play::after {
+  content: "";
+  position: absolute;
+  top: 50%; left: 50%;
+  margin: -0.5rem 0 0 -0.3rem;
+  border-style: solid;
+  border-width: 0.5rem 0 0.5rem 0.85rem;
+  border-color: transparent transparent transparent var(--silver);
+}
+
+.video-card:hover .play,
+.video-card:focus-visible .play {
+  background: rgba(46, 92, 158, 0.55);
+  border-color: var(--silver);
+}
+
+/* ---------- stills rail ---------- */
+
+.rail-wrap { position: relative; }
+
+.rail {
+  list-style: none;
+  margin: 0;
+  padding: 0 0 1.25rem;
+  display: flex;
+  gap: clamp(0.75rem, 1.6vw, 1.25rem);
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  scrollbar-color: var(--rule) transparent;
+}
+
+/* The rail runs to the viewport edge, so it reads as continuing past the
+   screen rather than stopping inside the text column. */
+.rail::before,
+.rail::after {
+  content: "";
+  flex: 0 0 max(1.5rem, calc((100vw - min(1180px, 100vw - 3rem)) / 2));
+}
+
+.rail::-webkit-scrollbar { height: 3px; }
+.rail::-webkit-scrollbar-thumb { background: var(--rule); }
+
+.rail li {
+  flex: 0 0 auto;
+  scroll-snap-align: center;
+}
+
+.still {
+  display: block;
+  width: clamp(190px, 24vw, 290px);
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  border: 1px solid var(--rule);
+  background: var(--slate);
+}
+
+.still img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  filter: saturate(0.88) brightness(0.88);
+  transition: filter 600ms var(--ease), transform 900ms var(--ease);
+}
+
+.still:hover img,
+.still:focus-visible img {
+  filter: saturate(1) brightness(1);
+  transform: scale(1.04);
+}
+
+.rail-hint {
+  margin: 1rem auto 0;
+  font-size: 0.625rem;
+  text-transform: uppercase;
+  letter-spacing: 0.28em;
+  color: var(--silver-faint);
+}
+
+/* ---------- video lightbox ---------- */
+
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(1rem, 5vw, 3rem);
+  background: rgba(4, 6, 11, 0.93);
+  backdrop-filter: blur(6px);
+}
+
+.lightbox-frame {
+  width: min(1100px, 100%);
+  aspect-ratio: 16 / 9;
+  background: #000;
+}
+
+.lightbox-frame iframe {
+  width: 100%; height: 100%;
+  border: 0;
+  display: block;
+}
+
+.lightbox-close {
+  position: absolute;
+  top: clamp(0.75rem, 2.5vw, 1.75rem);
+  right: clamp(0.75rem, 2.5vw, 1.75rem);
+  width: 3rem; height: 3rem;
+  font-size: 1.75rem;
+  line-height: 1;
+  color: var(--silver);
+  background: transparent;
+  border: 1px solid var(--rule);
+  cursor: pointer;
+  transition: border-color 300ms var(--ease), color 300ms var(--ease);
+}
+
+.lightbox-close:hover,
+.lightbox-close:focus-visible { border-color: var(--sapphire); }
+
+.also-with {
+  margin-top: 1.5rem;
+  font-size: 0.8125rem;
+  color: var(--silver-dim);
+}
+
+.also-with a {
+  color: var(--silver);
+  border-bottom: 1px solid var(--rule);
+  padding-bottom: 1px;
+}
+
+.also-with a:hover { border-bottom-color: var(--sapphire); }
+
 /* ---------- sections ---------- */
 
 .section { padding: clamp(6rem, 15vh, 11rem) 0; }
@@ -620,6 +814,9 @@ p { margin: 0 0 1.5rem; max-width: 62ch; color: var(--silver-dim); }
 
   .live-grid { grid-template-columns: 1fr; gap: 2.5rem; }
 
+  .video-grid { grid-template-columns: 1fr; }
+  .play { width: 3.5rem; height: 3.5rem; margin: -1.75rem 0 0 -1.75rem; }
+
   .quote {
     border-left: 0;
     border-top: 1px solid var(--rule);
@@ -643,5 +840,6 @@ p { margin: 0 0 1.5rem; max-width: 62ch; color: var(--silver-dim); }
   html { scroll-behavior: auto; }
   .reveal { opacity: 1; transform: none; }
   .hero-media, .frame img, .bloom { transform: none !important; }
+  .video-card img, .still img { transform: none !important; }
   * { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
 }

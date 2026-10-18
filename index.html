@@ -36,6 +36,7 @@
     <nav class="nav" aria-label="Primary">
       <a href="#about">About</a>
       <a href="#live">Live</a>
+      <a href="#watch">Watch</a>
       <a href="#sessions">Sessions</a>
       <a href="#book">Book</a>
     </nav>
@@ -46,6 +47,7 @@
   <nav class="mobile-nav" id="mobileNav" aria-label="Mobile">
     <a href="#about">About</a>
     <a href="#live">Live</a>
+    <a href="#watch">Watch</a>
     <a href="#sessions">Sessions</a>
     <a href="#book">Book</a>
   </nav>
@@ -164,6 +166,67 @@
     </div>
   </section>
 
+  <section class="section" id="watch">
+    <div class="shell">
+      <p class="label reveal">Watch</p>
+      <h2 class="display reveal" data-delay="1">Live takes</h2>
+      <p class="watch-intro reveal" data-delay="2">Full sessions filmed with XO Sounds, and moments caught in the room.</p>
+
+      <ul class="video-grid reveal" data-delay="3">
+        <li>
+          <button class="video-card" type="button" data-yt="bhcsaBhl8cU" aria-label="Play live session, video 1 of 4">
+            <img data-yt-poster="bhcsaBhl8cU" alt="" loading="lazy">
+            <span class="play" aria-hidden="true"></span>
+          </button>
+        </li>
+        <li>
+          <button class="video-card" type="button" data-yt="kFSJF4bnnd0" aria-label="Play live session, video 2 of 4">
+            <img data-yt-poster="kFSJF4bnnd0" alt="" loading="lazy">
+            <span class="play" aria-hidden="true"></span>
+          </button>
+        </li>
+        <li>
+          <button class="video-card" type="button" data-yt="snje0E_Ca_s" aria-label="Play live session, video 3 of 4">
+            <img data-yt-poster="snje0E_Ca_s" alt="" loading="lazy">
+            <span class="play" aria-hidden="true"></span>
+          </button>
+        </li>
+        <li>
+          <button class="video-card" type="button" data-yt="vkvLvxlq4Mg" aria-label="Play live session, video 4 of 4">
+            <img data-yt-poster="vkvLvxlq4Mg" alt="" loading="lazy">
+            <span class="play" aria-hidden="true"></span>
+          </button>
+        </li>
+      </ul>
+    </div>
+
+    <div class="rail-wrap reveal" data-delay="4">
+      <ul class="rail">
+        <li>
+          <a class="still" href="https://www.instagram.com/belle.richardson98/" target="_blank" rel="noopener">
+            <img src="images/reel-duo-acoustic.jpg" alt="Belle Richardson singing beside an acoustic guitarist" loading="lazy">
+          </a>
+        </li>
+        <li>
+          <a class="still" href="https://www.instagram.com/belle.richardson98/" target="_blank" rel="noopener">
+            <img src="images/reel-home-studio.jpg" alt="Belle Richardson tracking vocals in headphones at a condenser mic" loading="lazy">
+          </a>
+        </li>
+        <li>
+          <a class="still" href="https://www.instagram.com/belle.richardson98/" target="_blank" rel="noopener">
+            <img src="images/reel-warm-vocal.jpg" alt="Belle Richardson singing close to the microphone under warm light" loading="lazy">
+          </a>
+        </li>
+        <li>
+          <a class="still" href="https://www.instagram.com/belle.richardson98/" target="_blank" rel="noopener">
+            <img src="images/reel-sunset-duo.jpg" alt="Belle Richardson performing outdoors at sunset with a guitarist" loading="lazy">
+          </a>
+        </li>
+      </ul>
+      <p class="shell rail-hint">Scroll for more &rarr;</p>
+    </div>
+  </section>
+
   <section class="section section-slate" id="sessions">
     <div class="shell sessions-grid">
       <div>
@@ -172,7 +235,8 @@
         <p class="reveal" data-delay="2">An online music video series Belle co-founded to put Tasmanian players in front of a wider room — live takes, close mics, and the musicians who make the island's scene worth staying for.</p>
         <p class="reveal" data-delay="3">It comes from the same place the rest of her work does: a belief that the arts community here is stronger when it is connected.</p>
         <p class="reveal" data-delay="4">
-          <a class="btn btn-quiet" href="https://www.instagram.com/soulspicesessions/" rel="noopener" target="_blank">Watch on Instagram</a>
+          <a class="btn btn-quiet" href="https://www.instagram.com/soulspicesessions/" rel="noopener" target="_blank">Instagram</a>
+          <a class="btn btn-quiet" href="https://www.facebook.com/soulspicesessions" rel="noopener" target="_blank">Facebook</a>
         </p>
       </div>
       <div class="quote reveal" data-delay="2">
@@ -192,15 +256,22 @@
       </p>
       <ul class="social reveal" data-delay="4">
         <li><a href="https://www.instagram.com/belle.richardson98/" rel="me noopener" target="_blank">Instagram</a></li>
-        <li><a href="https://open.spotify.com/artist/1kNgKkzVy0qeJbbZZzBtcH" rel="noopener" target="_blank">Spotify</a></li>
         <li><a href="https://vt.tiktok.com/ZSXMCDy2M/" rel="me noopener" target="_blank">TikTok</a></li>
         <li><a href="https://www.facebook.com/belle.richardson.39" rel="me noopener" target="_blank">Facebook</a></li>
       </ul>
+      <p class="also-with reveal" data-delay="5">Also sings with
+        <a href="https://open.spotify.com/artist/1kNgKkzVy0qeJbbZZzBtcH" rel="noopener" target="_blank">DK Effect</a> and
+        <a href="https://www.facebook.com/profile.php?id=100063650344192" rel="noopener" target="_blank">Belle&rsquo;s Boys</a>.</p>
       </div>
     </div>
   </section>
 
 </main>
+
+<div class="lightbox" id="lightbox" hidden>
+  <button class="lightbox-close" id="lightboxClose" type="button" aria-label="Close video">&times;</button>
+  <div class="lightbox-frame" id="lightboxFrame" role="dialog" aria-modal="true" aria-label="Video player"></div>
+</div>
 
 <footer class="site-footer">
   <div class="shell footer-inner">

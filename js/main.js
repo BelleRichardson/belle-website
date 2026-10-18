@@ -61,6 +61,69 @@
     if (!upcoming) { gigBlock.hidden = true; }
   }
 
+  /* YouTube posters. maxres does not exist for every upload, so fall back
+     to hqdefault — which always does — the first time one 404s. The cards
+     crop to 16:9, so hqdefault's 4:3 letterboxing never shows. */
+  [].forEach.call(document.querySelectorAll('img[data-yt-poster]'), function (img) {
+    var id = img.getAttribute('data-yt-poster');
+    var triedFallback = false;
+    img.addEventListener('error', function () {
+      if (!triedFallback) {
+        triedFallback = true;
+        img.src = 'https://i.ytimg.com/vi/' + id + '/hqdefault.jpg';
+        return;
+      }
+      /* Neither poster loaded — drop the broken image so the card falls
+         back to its slate ground and play ring rather than showing a
+         torn-image marker. */
+      img.style.display = 'none';
+    });
+    img.src = 'https://i.ytimg.com/vi/' + id + '/maxresdefault.jpg';
+  });
+
+  /* Video lightbox. The iframe is only built on open and torn down on
+     close, so no YouTube player loads — and nothing is requested from
+     YouTube — until someone actually asks to watch something. */
+  var lightbox = document.getElementById('lightbox');
+  var lightboxFrame = document.getElementById('lightboxFrame');
+  var lightboxClose = document.getElementById('lightboxClose');
+  var lastPlayTrigger = null;
+
+  function openVideo(id, trigger) {
+    lastPlayTrigger = trigger || null;
+    lightboxFrame.innerHTML =
+      '<iframe src="https://www.youtube-nocookie.com/embed/' + id +
+      '?autoplay=1&rel=0" title="Live session video" allow="accelerometer; ' +
+      'autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" ' +
+      'allowfullscreen></iframe>';
+    lightbox.hidden = false;
+    document.body.style.overflow = 'hidden';
+    lightboxClose.focus();
+  }
+
+  function closeVideo() {
+    lightbox.hidden = true;
+    lightboxFrame.innerHTML = '';
+    document.body.style.overflow = '';
+    if (lastPlayTrigger) { lastPlayTrigger.focus(); lastPlayTrigger = null; }
+  }
+
+  if (lightbox) {
+    [].forEach.call(document.querySelectorAll('[data-yt]'), function (card) {
+      card.addEventListener('click', function () {
+        openVideo(card.getAttribute('data-yt'), card);
+      });
+    });
+
+    lightboxClose.addEventListener('click', closeVideo);
+    lightbox.addEventListener('click', function (e) {
+      if (e.target === lightbox) { closeVideo(); }
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && !lightbox.hidden) { closeVideo(); }
+    });
+  }
+
   /* slow parallax on portraits and the hero */
   var parallaxLayers = [].slice.call(document.querySelectorAll('[data-parallax]'));
   var sapphire = document.querySelector('.bloom-sapphire');
